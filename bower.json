@@ -1,0 +1,8 @@
+{
+  "name": "Sass-in-a-nutshell",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.0"
+  },
+  "devDependencies": {}
+}

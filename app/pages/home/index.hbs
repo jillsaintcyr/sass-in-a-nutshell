@@ -1,0 +1,314 @@
+<div class="homepage js-page-controller-action" data-action-name="home">
+    <h1>Sass in a Nutshell</h1>
+    <p class="lead">The quickest possible start guide to using .scss-formatted Sass in your project.</p>
+
+    <div class="section">
+        <h2>Basic Information: How and Why</h2>
+        <dl>
+            <dt>How do I install Sass?</dt>
+            <dd><code>sudo gem install sass</code></dd>
+        </dl>
+        <p>See links and full explanation here: <a href="http://sass-lang.com/install">http://sass-lang.com/install</a>.</p>
+
+        <dl>
+            <dt>What problems does Sass solve?</dt>
+            <dd>Adds features missing from CSS like variables, functions, advanced inheritance, and nesting.</dd>
+        </dl>
+    </div>
+    <div class="section row">
+        <h2>Nesting</h2>
+        <p>Styles can be nested to indicate inheritance. The appropriate structure will be reflected in the generated CSS output.</p>
+        <div class="col-xs-12 col-md-6">
+            <h4>Sass Code:</h4>
+            <pre class="prettyprint lang-scss">
+ul {
+    margin: 0;
+    list-style: none;
+    li {
+        display: inline-block;
+        > a {
+            font-weight: bold;
+        }
+    }
+}
+            </pre> 
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <h4>CSS Result:</h4>
+            <pre class="prettyprint lang-css">
+ul {
+    margin: 0;
+    list-style: none;
+}
+
+ul li {
+    display: inline-block;
+}
+
+ul li > a {
+    font-weight: bold;
+}
+            </pre>
+        </div>
+
+        <h3>Nesting with Ampersand</h3>
+        <p>Use the ampersand character to refer to the current selector. You can use it either before the following selector to indicate continued usage (as with a pseudo selector), or after the following selector to refer to a parent element.</p>
+        <p><strong>*Note*</strong> Single line comments using two forward slashes will not appear in the resulting CSS, whereas multi-line comments using /* */ syntax will remain in the compiled CSS (unless set to compressed mode).</p>
+        <div class="col-xs-12 col-md-6">
+            <h4>Sass Code:</h4>
+            <pre class="prettyprint lang-scss">
+a {
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+
+    // Paragraphs that imm. follow links
+    & + p {
+        clear: both;
+    }
+
+    // Links on Landing Pages
+    .landing-page & {
+        color: red;
+    }
+}
+            </pre> 
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <h4>CSS Result:</h4>
+            <pre class="prettyprint lang-css">
+a {
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a + p {
+    clear: both;
+}
+
+.landing-page a {
+    color: red;
+}
+            </pre>
+        </div>
+
+        <h3>BEM Naming</h3>
+        <p>This nesting with ampersand can be especially useful when using <a href="http://bem.info/" target="_blank">BEM nomenclature</a>. When using ampersand as part of a selector (as opposed to with a colon as in the previous example) the resulting style rule will be place 'at root' (will ignore nesting).</p>
+
+        <div class="col-xs-12 col-md-6">
+            <h4>Sass Code:</h4>
+            <pre class="prettyprint lang-scss">
+.component {
+    margin: 10px 0;
+    &__subcomponent {
+        padding: 10px;
+        &--state {
+            color: red;
+        }
+    }
+}
+            </pre> 
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <h4>CSS Result:</h4>
+            <pre class="prettyprint lang-css">
+.component {
+    margin: 10px 0;
+}
+
+.component__subcomponent {
+    padding: 10px;
+}
+
+.component__subcomponent--state {
+    color: red;
+}
+            </pre>
+        </div>
+
+
+        <div class="col-xs-12">
+            <h3>Tips</h3>
+            <ul>
+                <li>Nesting can be addictive as it provides some nice structure to your CSS, however, don't over-nest as it will make your selectors more complicated than they need to be. Never nest more than 3 levels deep.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Variables</h2>
+            <p class="lead">Declare a variable which you can re-use throughout your code as in the follow example, with a dollar-sign prefix.</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <pre class="prettyprint lang-scss">
+$brandPrimary       : #aab0b7;
+$standardPadding    : 10px;
+
+.selector {
+    color: $brandPrimary;
+    padding: $standardPadding;
+}
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h3>Tips</h3>
+            <ul>
+                <li>Keep your variables in their own Sass partial file, imported before all your other partial files.</li>
+                <li>To use your variables in a given file, your variables must be in that file, imported into that file, or imported into a shared parent file.</li>
+                <li>Use semantic names rather than presentation names when possible (ie. <code>$linkColor</code> rather than <code>$darkRed</code>).</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Mixins</h2>
+            <p class="lead">Lead paragraph...</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <pre class="prettyprint lang-scss">
+$brandPrimary       : #aab0b7;
+$standardPadding    : 10px;
+
+.selector {
+    color: $brandPrimary;
+    padding: $standardPadding;
+}
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h3>Tips</h3>
+            <ul>
+                <li>Tips...</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Extends &amp; Placeholders</h2>
+            <p class="lead">Lead paragraph...</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <pre class="prettyprint lang-scss">
+$brandPrimary       : #aab0b7;
+$standardPadding    : 10px;
+
+.selector {
+    color: $brandPrimary;
+    padding: $standardPadding;
+}
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h3>Tips</h3>
+            <ul>
+                <li>Tips...</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Operations</h2>
+            <p class="lead">Lead paragraph...</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <pre class="prettyprint lang-scss">
+$brandPrimary       : #aab0b7;
+$standardPadding    : 10px;
+
+.selector {
+    color: $brandPrimary;
+    padding: $standardPadding;
+}
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h3>Tips</h3>
+            <ul>
+                <li>Tips...</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Conditionals</h2>
+            <p class="lead">Lead paragraph...</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <pre class="prettyprint lang-scss">
+$brandPrimary       : #aab0b7;
+$standardPadding    : 10px;
+
+.selector {
+    color: $brandPrimary;
+    padding: $standardPadding;
+}
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h3>Tips</h3>
+            <ul>
+                <li>Tips...</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Loops</h2>
+            <p class="lead">Lead paragraph...</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <pre class="prettyprint lang-scss">
+$brandPrimary       : #aab0b7;
+$standardPadding    : 10px;
+
+.selector {
+    color: $brandPrimary;
+    padding: $standardPadding;
+}
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h3>Tips</h3>
+            <ul>
+                <li>Tips...</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Hash Maps</h2>
+            <p class="lead">Lead paragraph...</p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <pre class="prettyprint lang-scss">
+$brandPrimary       : #aab0b7;
+$standardPadding    : 10px;
+
+.selector {
+    color: $brandPrimary;
+    padding: $standardPadding;
+}
+            </pre>
+        </div>
+        <div class="col-xs-12">
+            <h3>Tips</h3>
+            <ul>
+                <li>Tips...</li>
+            </ul>
+        </div>
+    </div>
+    <div class="section row">
+        <div class="col-xs-12">
+            <h2>Learn More</h2>
+            <p class="lead">The following links are excellent resources to continue learning about Sass:</p>
+            <ul>
+                <li>Sass language guide: <a href="http://sass-lang.com/guide">http://sass-lang.com/guide</a></li>
+                <li>The Sass Way: <a href="http://thesassway.com/">http://thesassway.com/</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
