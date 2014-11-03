@@ -2,22 +2,67 @@
     <h1>Sass in a Nutshell</h1>
     <p class="lead">The quickest possible start guide to using .scss-formatted Sass in your project.</p>
 
-    <div class="section">
-        <h2>Basic Information: How and Why</h2>
-        <dl>
-            <dt>How do I install Sass?</dt>
-            <dd><code>sudo gem install sass</code></dd>
-        </dl>
-        <p>See links and full explanation here: <a href="http://sass-lang.com/install">http://sass-lang.com/install</a>.</p>
-
-        <dl>
-            <dt>What problems does Sass solve?</dt>
-            <dd>Adds features missing from CSS like variables, functions, advanced inheritance, and nesting.</dd>
-        </dl>
-    </div>
     <div class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Why Sass?</h2>
+            <p>Features missing from 'vanilla' CSS like:</p>
+            <ul>
+                <li>variables</li>
+                <li>nesting</li>
+                <li>advanced inheritance</li>
+                <li>functions ('mixins')</li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <h2>Installation</h2>
+            <dl>
+                <dt>How do I install Sass on my computer?</dt>
+                <dd><code>sudo gem install sass</code></dd>
+                <dd>See links and full explanation here: <a href="http://sass-lang.com/install">http://sass-lang.com/install</a>.</dd>
+
+                <dt>How do I install Sass in my project?</dt>
+                <dd>via Node Package Manager: <a href="https://www.npmjs.org/search?q=sass" target="_blank">https://www.npmjs.org/search?q=sass</a></dd>
+
+                <dt>How do I install the Sass version of Bootstrap in my project?</dt>
+                <dd>via Bower: <code>bower install bootstrap-sass-official -S</code></dd>
+            </dl>
+        </div>
+    </div>
+    <div class="section">
+        <h2>Basic Information</h2>
+        <h3>Partials &amp; Imports</h3>
+        <p>Sass written in the Scss format should be saved with a .scss file extension. Partials should be prefixed with an underscore (ex. _normalize.scss). Partials can be incluced into one or more parent .scss files using the @import directive: <code>@import "normalize";</code> wherein the .scss extension and the preceding underscore are assumed.</p>
+
+        <h3>Comments</h3>
+        <p>Single line comments using two forward slashes <code>// Some comment text</code> will not appear in the resulting CSS, whereas multi-line comments using <code>/* Some comment text */</code> syntax will remain in the compiled CSS (unless set to compressed mode). To force a comment to be included in the compiled version, use an exclamation point as the first character in the comment text: <code>/*! This comment should be preserved. */</code></p>
+    </div>
+    <div id="section_variables" class="section row">
+        <div class="col-xs-12 col-md-6">
+            <h2>Variables</h2>
+            <p class="lead">Declare a variable which you can re-use throughout your code as in the follow example, with a dollar-sign prefix.</p>
+            <h3>Tips</h3>
+            <ul>
+                <li>Keep your variables in their own Sass partial file, imported before all your other partial files.</li>
+                <li>To use your variables in a given file, your variables must be in that file, imported into that file, or imported into a shared parent file.</li>
+                <li>Use semantic names rather than presentation names when possible (ie. <code>$linkColor</code> rather than <code>$darkRed</code>).</li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <pre class="prettyprint lang-scss">
+$brandPrimary       : #aab0b7;
+$standardPadding    : 10px;
+
+.selector {
+    color: $brandPrimary;
+    padding: $standardPadding;
+}
+            </pre>
+        </div>
+    </div>
+    <div id="section_nesting" class="section row">
         <h2>Nesting</h2>
-        <p>Styles can be nested to indicate inheritance. The appropriate structure will be reflected in the generated CSS output.</p>
+        <p class="lead">Styles can be nested to indicate inheritance.</p>
+        <p>The appropriate structure will be reflected in the generated CSS output.</p>
         <div class="col-xs-12 col-md-6">
             <h4>Sass Code:</h4>
             <pre class="prettyprint lang-scss">
@@ -53,7 +98,6 @@ ul li > a {
 
         <h3>Nesting with Ampersand</h3>
         <p>Use the ampersand character to refer to the current selector. You can use it either before the following selector to indicate continued usage (as with a pseudo selector), or after the following selector to refer to a parent element.</p>
-        <p><strong>*Note*</strong> Single line comments using two forward slashes will not appear in the resulting CSS, whereas multi-line comments using /* */ syntax will remain in the compiled CSS (unless set to compressed mode).</p>
         <div class="col-xs-12 col-md-6">
             <h4>Sass Code:</h4>
             <pre class="prettyprint lang-scss">
@@ -138,52 +182,15 @@ a + p {
             </ul>
         </div>
     </div>
-    <div class="section row">
-        <div class="col-xs-12 col-md-6">
-            <h2>Variables</h2>
-            <p class="lead">Declare a variable which you can re-use throughout your code as in the follow example, with a dollar-sign prefix.</p>
-        </div>
-        <div class="col-xs-12 col-md-6">
-            <pre class="prettyprint lang-scss">
-$brandPrimary       : #aab0b7;
-$standardPadding    : 10px;
-
-.selector {
-    color: $brandPrimary;
-    padding: $standardPadding;
-}
-            </pre>
-        </div>
-        <div class="col-xs-12">
-            <h3>Tips</h3>
-            <ul>
-                <li>Keep your variables in their own Sass partial file, imported before all your other partial files.</li>
-                <li>To use your variables in a given file, your variables must be in that file, imported into that file, or imported into a shared parent file.</li>
-                <li>Use semantic names rather than presentation names when possible (ie. <code>$linkColor</code> rather than <code>$darkRed</code>).</li>
-            </ul>
-        </div>
-    </div>
-    <div class="section row">
+    <div id="section_mixins" class="section row">
         <div class="col-xs-12 col-md-6">
             <h2>Mixins</h2>
             <p class="lead">Lead paragraph...</p>
         </div>
         <div class="col-xs-12 col-md-6">
             <pre class="prettyprint lang-scss">
-$brandPrimary       : #aab0b7;
-$standardPadding    : 10px;
-
-.selector {
-    color: $brandPrimary;
-    padding: $standardPadding;
-}
+...
             </pre>
-        </div>
-        <div class="col-xs-12">
-            <h3>Tips</h3>
-            <ul>
-                <li>Tips...</li>
-            </ul>
         </div>
     </div>
     <div class="section row">
@@ -193,20 +200,8 @@ $standardPadding    : 10px;
         </div>
         <div class="col-xs-12 col-md-6">
             <pre class="prettyprint lang-scss">
-$brandPrimary       : #aab0b7;
-$standardPadding    : 10px;
-
-.selector {
-    color: $brandPrimary;
-    padding: $standardPadding;
-}
+...
             </pre>
-        </div>
-        <div class="col-xs-12">
-            <h3>Tips</h3>
-            <ul>
-                <li>Tips...</li>
-            </ul>
         </div>
     </div>
     <div class="section row">
@@ -216,20 +211,8 @@ $standardPadding    : 10px;
         </div>
         <div class="col-xs-12 col-md-6">
             <pre class="prettyprint lang-scss">
-$brandPrimary       : #aab0b7;
-$standardPadding    : 10px;
-
-.selector {
-    color: $brandPrimary;
-    padding: $standardPadding;
-}
+...
             </pre>
-        </div>
-        <div class="col-xs-12">
-            <h3>Tips</h3>
-            <ul>
-                <li>Tips...</li>
-            </ul>
         </div>
     </div>
     <div class="section row">
@@ -239,20 +222,8 @@ $standardPadding    : 10px;
         </div>
         <div class="col-xs-12 col-md-6">
             <pre class="prettyprint lang-scss">
-$brandPrimary       : #aab0b7;
-$standardPadding    : 10px;
-
-.selector {
-    color: $brandPrimary;
-    padding: $standardPadding;
-}
+...
             </pre>
-        </div>
-        <div class="col-xs-12">
-            <h3>Tips</h3>
-            <ul>
-                <li>Tips...</li>
-            </ul>
         </div>
     </div>
     <div class="section row">
@@ -262,20 +233,8 @@ $standardPadding    : 10px;
         </div>
         <div class="col-xs-12 col-md-6">
             <pre class="prettyprint lang-scss">
-$brandPrimary       : #aab0b7;
-$standardPadding    : 10px;
-
-.selector {
-    color: $brandPrimary;
-    padding: $standardPadding;
-}
+...
             </pre>
-        </div>
-        <div class="col-xs-12">
-            <h3>Tips</h3>
-            <ul>
-                <li>Tips...</li>
-            </ul>
         </div>
     </div>
     <div class="section row">
@@ -285,20 +244,8 @@ $standardPadding    : 10px;
         </div>
         <div class="col-xs-12 col-md-6">
             <pre class="prettyprint lang-scss">
-$brandPrimary       : #aab0b7;
-$standardPadding    : 10px;
-
-.selector {
-    color: $brandPrimary;
-    padding: $standardPadding;
-}
+...
             </pre>
-        </div>
-        <div class="col-xs-12">
-            <h3>Tips</h3>
-            <ul>
-                <li>Tips...</li>
-            </ul>
         </div>
     </div>
     <div class="section row">
@@ -306,8 +253,9 @@ $standardPadding    : 10px;
             <h2>Learn More</h2>
             <p class="lead">The following links are excellent resources to continue learning about Sass:</p>
             <ul>
-                <li>Sass language guide: <a href="http://sass-lang.com/guide">http://sass-lang.com/guide</a></li>
-                <li>The Sass Way: <a href="http://thesassway.com/">http://thesassway.com/</a></li>
+                <li>Sass language guide: <a href="http://sass-lang.com/guide" target="_blank">http://sass-lang.com/guide</a></li>
+                <li>Sass full documentation: <a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" target="_blank">http://sass-lang.com/documentation/file.SASS_REFERENCE.html</a></li>
+                <li>The Sass Way: <a href="http://thesassway.com/" target="_blank">http://thesassway.com/</a></li>
             </ul>
         </div>
     </div>

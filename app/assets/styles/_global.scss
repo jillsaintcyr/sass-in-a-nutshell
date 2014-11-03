@@ -25,12 +25,15 @@ h2 {
 	@include rem(2.4);
 	margin-top: 0;
 	color: #888;
+	p + & {
+		margin-top: 30px;
+	}
 }
 
 h3 {
 	@include rem(1.75);
 	margin: 0;
-	padding: 20px 0 10px;
+	padding: 10px 0 10px;
 	clear: both;
 }
 
@@ -40,9 +43,27 @@ h4 {
 	text-transform: uppercase;
 }
 
+p, li {
+	max-width: 45em;
+}
+
+dt {
+	margin-top: 1.5em;
+}
+
+code {
+	color: #2B62A0;
+	background-color: #D7E8FC;
+	font-size: .9em;
+}
+
 .section {
 	border-bottom: 1px solid #ddd;
 	margin: 15px 0;
-	padding: 10px 0;
+	padding: 50px 0 10px; // temporary: large top padding to assist with jump links
 	clear: both;
+}
+
+.lead {
+	margin-bottom: 5px;
 }
